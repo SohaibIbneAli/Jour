@@ -1,0 +1,14 @@
+com/jour/MainActivity.java
+ com.jour.MainActivity
+com/jour/MainApplication.java
+ com.jour.MainApplication
+ com.jour.MainApplication$1
+com/jour/ReactNativeFlipper.java
+ com.jour.ReactNativeFlipper
+ com.jour.ReactNativeFlipper$1
+ com.jour.ReactNativeFlipper$2
+ com.jour.ReactNativeFlipper$2$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/jour/BuildConfig.java
+ com.jour.BuildConfig
