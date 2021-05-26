@@ -12,6 +12,7 @@ export default function Comments({route}) {
   //const [lastUserId,setlastUserId] = useState();
 
   const [comments, setComments] = useState([]);
+  const [filterComments, setFilterComments] = useState([]);
 
   const getData = async () => {
     const APIURL =
@@ -20,6 +21,7 @@ export default function Comments({route}) {
       .then(response => response.json())
       .then(json => {
         setComments(json);
+        setFilterComments(json);
       });
   };
 
@@ -30,16 +32,29 @@ export default function Comments({route}) {
     //lastUserId!=userId
   }, []);
 
+  const filterEmail = text => {
+    setFilterComments(
+      comments.filter(i => i.email.toLowerCase().includes(text.toLowerCase())),
+    );
+  };
+  const searchCallBack = text => {
+    if (text) {
+      filterEmail(text);
+    } else {
+      setFilterComments(comments);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <SearchBar
-        placeholder="Search Comments(Name)"
+        placeholder="Search Comments(Email)"
         callback={text => searchCallBack(text)}
       />
       {comments.length > 0 ? (
         <FlatList
           style={styles.flatList}
-          data={comments}
+          data={filterComments}
           renderItem={({item, index}) => {
             return (
               <RenderItem
