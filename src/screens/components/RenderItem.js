@@ -11,6 +11,7 @@ import {
 const styles = StyleSheet.create({
   itemPost: {
     //backgroundColor: '#F5B7B1',
+    flex: 0.8,
     borderWidth: 1,
     borderColor: '#F5B7B1',
     borderRadius: 8,
@@ -27,10 +28,8 @@ const styles = StyleSheet.create({
   email: {textDecorationLine: 'underline'},
 });
 const RenderItems = ({item, index, data, onPress}) => {
-  console.log('hii', item);
   const [state, setstate] = useState({User: 'User', Post: 'PostId'});
   // const [state1, setstate1] = useState({"user"})
-  console.log(state['User']);
   return (
     <TouchableOpacity
       style={styles.itemPost}

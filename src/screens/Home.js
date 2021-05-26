@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import RenderItem from './components/RenderItem';
+import SearchBar from './components/SearchBar';
+
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: '#ffffff'},
   itemPost: {
@@ -28,6 +30,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: 12,
   },
+  flatList: {flex: 0.85, marginHorizontal: 12},
   postUserTxt: {fontSize: 15},
   //postIdTxt:{},
   postTitleTxt: {fontSize: 16, color: 'red'},
@@ -38,7 +41,6 @@ export default function Home({navigation}) {
   const [postss, setPostss] = useState([]);
 
   const getData = async () => {
-    //console.log('postss.length', postss.length);
     const APIURL =
       'https://jsonplaceholder.typicode.com/posts?_start=' +
       limit +
@@ -62,9 +64,17 @@ export default function Home({navigation}) {
     navigation.push('Comments', {userId: id});
   };
 
+  const searchCallBack = text => {
+    console.log('Text', text);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="red" hidden={false} />
+      <SearchBar
+        placeholder="Search Posts"
+        callback={text => searchCallBack(text)}
+      />
       <FlatList
         style={styles.flatList}
         data={postss}
@@ -79,7 +89,6 @@ export default function Home({navigation}) {
           );
         }}
         // ItemSeparatorComponent={() => <View style={styles.horizentalLine} />}
-        style={{marginHorizontal: 12}}
         onEndReached={handleLoadMore}
         showsVerticalScrollIndicator={true}
         keyExtractor={(item, index) => index + index}
