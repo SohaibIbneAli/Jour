@@ -18,7 +18,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Splash"
         screenOptions={({route, navigation}) => ({
           headerStyle: {
             backgroundColor: 'red',
@@ -27,7 +27,7 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: '600',
           },
-          headerTitleAlign:"center"
+          headerTitleAlign: 'center',
         })}>
         <Stack.Screen
           options={{headerShown: false}}
@@ -49,7 +49,6 @@ export default function App() {
             title: 'Comments',
             gestureEnabled: 'true',
             gestureDirection: 'vertical-inverted',
-            
           }}
         />
       </Stack.Navigator>
