@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
 });
 
 export default function SearchBar({placeholder, callback}) {
-  console.log('Place', placeholder);
   return (
     <View style={styles.container}>
       <View searchBar style={{borderRadius: 5, width: '90%', height: '54%'}}>

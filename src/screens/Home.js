@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
 export default function Home({navigation}) {
   const [limit, setLimit] = useState(0);
   const [postss, setPostss] = useState([]);
+  const [filterPostss, setFilterPostss] = useState([]);
 
   const getData = async () => {
     const APIURL =
@@ -49,7 +50,12 @@ export default function Home({navigation}) {
     fetch(APIURL)
       .then(response => response.json())
       .then(json => {
-        postss.length === 0 ? setPostss(json) : setPostss([...postss, ...json]);
+        postss.length === 0
+          ? (setPostss(json), setFilterPostss(json))
+          : setPostss(
+              [...postss, ...json],
+              setFilterPostss([...filterPostss, ...json]),
+            );
       });
   };
   useEffect(() => {
@@ -64,20 +70,29 @@ export default function Home({navigation}) {
     navigation.push('Comments', {userId: id});
   };
 
+  const filterTitle = text => {
+    setFilterPostss(
+      postss.filter(i => i.title.toLowerCase().includes(text.toLowerCase())),
+    );
+  };
   const searchCallBack = text => {
-    console.log('Text', text);
+    if (text) {
+      filterTitle(text);
+    } else {
+      setFilterPostss(postss);
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="red" hidden={false} />
       <SearchBar
-        placeholder="Search Posts"
+        placeholder="Search Posts(title)"
         callback={text => searchCallBack(text)}
       />
       <FlatList
         style={styles.flatList}
-        data={postss}
+        data={filterPostss}
         renderItem={({item, index}) => {
           return (
             <RenderItem
