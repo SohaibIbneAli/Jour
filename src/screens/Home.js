@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   postTitleTxt: {fontSize: 16, color: 'red'},
   //postBodyTxt:{},
 });
-export default function Home() {
+export default function Home({navigation}) {
   const [limit, setLimit] = useState(0);
   const [postss, setPostss] = useState([]);
 
@@ -58,6 +58,11 @@ export default function Home() {
     setLimit(limit => limit + 10);
   };
 
+const postOnPress= (id)=>
+{
+  navigation.push("Comments",{userId:id})
+}
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="red" hidden={false} />
@@ -65,7 +70,7 @@ export default function Home() {
         style={styles.flatList}
         data={postss}
         renderItem={({item, index}) => {
-            return <RenderItem item={item} index={index} data="posts" onPress={()=>console.log("Pressed")} />;
+            return <RenderItem item={item} index={index} data="posts" onPress={(id)=>postOnPress(id)} />;
           }}
         // ItemSeparatorComponent={() => <View style={styles.horizentalLine} />}
         style={{marginHorizontal: 12}}
