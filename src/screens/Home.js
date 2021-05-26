@@ -10,7 +10,7 @@ import {
   LayoutAnimation,
   TouchableOpacity,
 } from 'react-native';
-import RenderItem from "./components/RenderItem"
+import RenderItem from './components/RenderItem';
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: '#ffffff'},
   itemPost: {
@@ -58,10 +58,9 @@ export default function Home({navigation}) {
     setLimit(limit => limit + 10);
   };
 
-const postOnPress= (id)=>
-{
-  navigation.push("Comments",{userId:id})
-}
+  const postOnPress = id => {
+    navigation.push('Comments', {userId: id});
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -70,8 +69,15 @@ const postOnPress= (id)=>
         style={styles.flatList}
         data={postss}
         renderItem={({item, index}) => {
-            return <RenderItem item={item} index={index} data="posts" onPress={(id)=>postOnPress(id)} />;
-          }}
+          return (
+            <RenderItem
+              item={item}
+              index={index}
+              data="posts"
+              onPress={id => postOnPress(id)}
+            />
+          );
+        }}
         // ItemSeparatorComponent={() => <View style={styles.horizentalLine} />}
         style={{marginHorizontal: 12}}
         onEndReached={handleLoadMore}

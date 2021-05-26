@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
   //postIdTxt:{},
   postTitleTxt: {fontSize: 16, color: 'red'},
   //postBodyTxt:{},
-  name:{},
-  email:{textDecorationLine: 'underline'}
+  name: {},
+  email: {textDecorationLine: 'underline'},
 });
 const RenderItems = ({item, index, data, onPress}) => {
   console.log('hii', item);
@@ -40,17 +40,21 @@ const RenderItems = ({item, index, data, onPress}) => {
       }}>
       <View style={{flexDirection: 'row'}}>
         <Text style={styles.postUserTxt}>
-          {data==="posts" ? (state['User']+ " "+item.userId ) : state['Post']+ " "+item.postId }
+          {data === 'posts'
+            ? state['User'] + ' ' + item.userId
+            : state['Post'] + ' ' + item.postId}
         </Text>
 
         <Text style={[{marginLeft: 'auto'}, styles.postIdTxt]}>#{item.id}</Text>
       </View>
-     {data==="posts" ? <Text style={styles.postTitleTxt}>{item.title}</Text>:
-     
-       <>
-     <Text style={styles.postTitleTxt}>{item.name}</Text>
-     <Text style={styles.email}>{item.email}</Text></>
-     }
+      {data === 'posts' ? (
+        <Text style={styles.postTitleTxt}>{item.title}</Text>
+      ) : (
+        <>
+          <Text style={styles.postTitleTxt}>{item.name}</Text>
+          <Text style={styles.email}>{item.email}</Text>
+        </>
+      )}
       <Text style={styles.postBodyTxt}>{item.body}</Text>
     </TouchableOpacity>
   );

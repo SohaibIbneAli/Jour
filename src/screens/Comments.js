@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {FlatList, View, StyleSheet, SafeAreaView} from 'react-native';
-import RenderItem from "./components/RenderItem"
+import RenderItem from './components/RenderItem';
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: '#ffffff'},
 });
@@ -38,7 +38,14 @@ export default function Comments({route}) {
           style={styles.flatList}
           data={comments}
           renderItem={({item, index}) => {
-            return <RenderItem item={item} index={index} data="comments"   onPress={id =>null} />;
+            return (
+              <RenderItem
+                item={item}
+                index={index}
+                data="comments"
+                onPress={id => null}
+              />
+            );
           }}
           style={{marginHorizontal: 12}}
           showsVerticalScrollIndicator={true}
