@@ -3,6 +3,7 @@ import { FlatList, View,StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
     container: {flex: 1, backgroundColor: '#ffffff'},
       });
+      //asdfasdf
 export default function Comments() {
     return (
      <FlatList
